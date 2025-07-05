@@ -6,15 +6,15 @@ import 'package:maps_flutter/features/login/ui/widgets/next_button.dart';
 import 'package:maps_flutter/features/login/ui/widgets/phone_form_field.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-
+  LoginScreen({super.key});
+  final GlobalKey<FormState> _phoneFormKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Form(
-          key: UniqueKey(),
+          key: _phoneFormKey,
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 32.w, vertical: 88.h),
             child: Column(
