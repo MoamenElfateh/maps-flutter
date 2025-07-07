@@ -38,6 +38,7 @@ class PhoneVerificationBloc extends StatelessWidget {
           );
         }
       },
+      child: Container(),
     );
   }
 

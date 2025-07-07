@@ -26,7 +26,7 @@ class OtpIntroText extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 2.w),
           child: RichText(
             text: TextSpan(
-              text: "Enter your 6 digits code number sent to",
+              text: "Enter your 6 digits code number sent to ",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 18.sp,

@@ -26,23 +26,27 @@ class _LoginScreenState extends State<LoginScreen> {
           key: _phoneFormKey,
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 32.w, vertical: 88.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                LoginIntroTexts(),
-                Gap(110.h),
-                PhoneFormField(
-                  onSaved: (phone) {
-                    phoneNumber = phone;
-                  },
-                ),
-                Gap(70.h),
-                NextButton(
-                  phoneFormKey: _phoneFormKey,
-                  phoneNumberGetter: () => phoneNumber,
-                ),
-                PhoneNumberSubmittedBloc(phoneNumberGetter: () => phoneNumber),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  LoginIntroTexts(),
+                  Gap(110.h),
+                  PhoneFormField(
+                    onSaved: (phone) {
+                      phoneNumber = phone;
+                    },
+                  ),
+                  Gap(70.h),
+                  NextButton(
+                    phoneFormKey: _phoneFormKey,
+                    phoneNumberGetter: () => phoneNumber,
+                  ),
+                  PhoneNumberSubmittedBloc(
+                    phoneNumberGetter: () => phoneNumber,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
