@@ -10,10 +10,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:maps_flutter/core/routing/app_router.dart';
 import 'package:maps_flutter/maps_flutter_app.dart';
 
+late final String initialRoute;
+
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MapsFlutterApp(appRouter: AppRouter()));
+    await tester.pumpWidget(
+      MapsFlutterApp(appRouter: AppRouter(), initialRoute: initialRoute),
+    );
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
