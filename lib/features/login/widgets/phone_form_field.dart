@@ -3,10 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:maps_flutter/core/theming/my_colors.dart';
 
-// ignore: must_be_immutable
 class PhoneFormField extends StatelessWidget {
-  PhoneFormField({super.key});
-  late String phoneNumber;
+  const PhoneFormField({super.key, required this.onSaved});
+  final void Function(String phone) onSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,7 @@ class PhoneFormField extends StatelessWidget {
                 return null;
               },
               onSaved: (value) {
-                phoneNumber = value!;
+                onSaved(value!);
               },
             ),
           ),

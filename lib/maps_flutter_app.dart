@@ -4,7 +4,12 @@ import 'package:maps_flutter/core/routing/app_router.dart';
 
 class MapsFlutterApp extends StatelessWidget {
   final AppRouter appRouter;
-  const MapsFlutterApp({super.key, required this.appRouter});
+  final String initialRoute;
+  const MapsFlutterApp({
+    super.key,
+    required this.appRouter,
+    required this.initialRoute,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +26,7 @@ class MapsFlutterApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white,
           ),
           onGenerateRoute: appRouter.generateRoute,
+          initialRoute: initialRoute,
         );
       },
     );
