@@ -21,7 +21,7 @@ class PhoneFormField extends StatelessWidget {
             ),
             child: Text(
               "${generateCountryFlag()} +20",
-              style: TextStyle(fontSize: 18.sp, letterSpacing: 2.0.w),
+              style: TextStyle(fontSize: 15.sp, letterSpacing: 2.0.w),
             ),
           ),
         ),

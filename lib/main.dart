@@ -6,7 +6,7 @@ import 'package:maps_flutter/core/routing/app_router.dart';
 import 'package:maps_flutter/core/routing/routes.dart';
 import 'package:maps_flutter/maps_flutter_app.dart';
 
-late String initialRoute;
+String initialRoute = Routes.loginScreen;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

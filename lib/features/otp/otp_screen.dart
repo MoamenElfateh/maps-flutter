@@ -24,21 +24,23 @@ class _OtpScreenState extends State<OtpScreen> {
         backgroundColor: Colors.white,
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: 32.w, vertical: 88.h),
-          child: Column(
-            children: [
-              OtpIntroText(phoneNumber: widget.phoneNumber),
-              Gap(88.h),
-              PinCodeFields(
-                onCompleted: (code) {
-                  otpCode = code;
-                },
-              ),
-              Gap(60.h),
-              VerifyButton(otpCodeGetter: () => otpCode),
-              PhoneVerificationBloc(
-                phoneNumberGetter: () => widget.phoneNumber,
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                OtpIntroText(phoneNumber: widget.phoneNumber),
+                Gap(88.h),
+                PinCodeFields(
+                  onCompleted: (code) {
+                    otpCode = code;
+                  },
+                ),
+                Gap(60.h),
+                VerifyButton(otpCodeGetter: () => otpCode),
+                PhoneVerificationBloc(
+                  phoneNumberGetter: () => widget.phoneNumber,
+                ),
+              ],
+            ),
           ),
         ),
       ),
