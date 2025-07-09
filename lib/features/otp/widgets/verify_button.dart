@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maps_flutter/business_logic/cubit/phone_auth_cubit.dart';
+import 'package:maps_flutter/helpers/progress_indicator_helper.dart';
 
 class VerifyButton extends StatelessWidget {
   const VerifyButton({super.key, required this.otpCodeGetter});
@@ -20,7 +21,7 @@ class VerifyButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          showProgressIndicator(context);
+          ProgressIndicatorHelper.showProgressIndicator(context);
           _login(context);
         },
         child: Text(
@@ -28,27 +29,6 @@ class VerifyButton extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontSize: 16.sp),
         ),
       ),
-    );
-  }
-
-  void showProgressIndicator(BuildContext context) {
-    AlertDialog alertDialog = AlertDialog(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      content: Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-        ),
-      ),
-    );
-
-    showDialog(
-      barrierColor: Colors.white.withValues(alpha: 0),
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        return alertDialog;
-      },
     );
   }
 

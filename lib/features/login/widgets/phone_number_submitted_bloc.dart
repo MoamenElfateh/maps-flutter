@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maps_flutter/business_logic/cubit/phone_auth_cubit.dart';
 import 'package:maps_flutter/core/routing/routes.dart';
+import 'package:maps_flutter/helpers/progress_indicator_helper.dart';
 
 class PhoneNumberSubmittedBloc extends StatelessWidget {
   const PhoneNumberSubmittedBloc({super.key, required this.phoneNumberGetter});
@@ -16,7 +17,7 @@ class PhoneNumberSubmittedBloc extends StatelessWidget {
 
       listener: (context, state) {
         if (state is Loading) {
-          showProgressIndicator(context);
+          ProgressIndicatorHelper.showProgressIndicator(context);
         }
 
         if (state is PhoneNumberSubmitted) {
@@ -41,27 +42,6 @@ class PhoneNumberSubmittedBloc extends StatelessWidget {
       },
 
       child: Container(),
-    );
-  }
-
-  void showProgressIndicator(BuildContext context) {
-    AlertDialog alertDialog = AlertDialog(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      content: Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-        ),
-      ),
-    );
-
-    showDialog(
-      barrierColor: Colors.white.withValues(alpha: 0),
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        return alertDialog;
-      },
     );
   }
 }
