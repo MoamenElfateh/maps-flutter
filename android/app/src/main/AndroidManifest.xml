@@ -10,6 +10,7 @@
     <action android:name="android.intent.action.VIEW" />
     <data android:scheme="https" />
   </intent>
+</queries>
     <application
         android:label="maps_flutter"
         android:name="${applicationName}"
