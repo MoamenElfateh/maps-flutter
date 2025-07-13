@@ -9,3 +9,9 @@ class PlacesLoaded extends MapsState {
   final List<PlaceSuggestions> places;
   PlacesLoaded({required this.places});
 }
+
+class PlaceLocationDetailsLoaded extends MapsState {
+  final PlaceDetails placeDetails;
+
+  PlaceLocationDetailsLoaded(this.placeDetails);
+}
