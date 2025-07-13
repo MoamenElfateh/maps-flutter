@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maps_flutter/business_logic/cubit/maps/maps_cubit.dart';
 import 'package:maps_flutter/core/theming/my_colors.dart';
+import 'package:maps_flutter/features/map/widgets/suggestions_bloc.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:uuid/uuid.dart';
 
 class FloatingSearchBarWidget extends StatefulWidget {
   const FloatingSearchBarWidget({super.key});
@@ -38,7 +42,7 @@ class _FloatingSearchBarWidgetState extends State<FloatingSearchBarWidget> {
       width: isPortrait ? 600.w : 500.w,
       debounceDelay: const Duration(milliseconds: 500),
       onQueryChanged: (query) {
-        // auto complete
+        getPlacesSuggestions(query);
       },
       onFocusChanged: (isFocused) {
         // click , not click
@@ -62,10 +66,21 @@ class _FloatingSearchBarWidgetState extends State<FloatingSearchBarWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
-            children: [],
+            children: [
+              SuggestionsBloc(
+                floatingSearchBarController: floatingSearchBarController,
+              ),
+            ],
           ),
         );
       },
     );
+  }
+
+  void getPlacesSuggestions(String query) {
+    final sessionToken = Uuid().v4();
+    BlocProvider.of<MapsCubit>(
+      context,
+    ).emitPlaceSuggestions(query, sessionToken);
   }
 }

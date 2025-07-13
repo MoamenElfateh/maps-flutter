@@ -1,0 +1,2 @@
+const googleAPIKey = "";
+const suggestionsBaseURL = "";
