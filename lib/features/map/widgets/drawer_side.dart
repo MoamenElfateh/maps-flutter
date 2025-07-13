@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:maps_flutter/business_logic/cubit/phone_auth_cubit.dart';
+import 'package:maps_flutter/business_logic/cubit/phone_auth/phone_auth_cubit.dart';
 import 'package:maps_flutter/core/routing/routes.dart';
 import 'package:maps_flutter/features/map/widgets/drawer_header_widget.dart';
 import 'package:maps_flutter/features/map/widgets/drawer_list_item.dart';

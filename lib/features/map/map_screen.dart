@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:maps_flutter/business_logic/cubit/phone_auth_cubit.dart';
+import 'package:maps_flutter/business_logic/cubit/phone_auth/phone_auth_cubit.dart';
 import 'package:maps_flutter/core/theming/my_colors.dart';
 import 'package:maps_flutter/features/map/widgets/floating_search_bar_widget.dart';
 import 'package:maps_flutter/features/map/widgets/phone_map.dart';

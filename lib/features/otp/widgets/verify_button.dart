@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:maps_flutter/business_logic/cubit/phone_auth_cubit.dart';
+import 'package:maps_flutter/business_logic/cubit/phone_auth/phone_auth_cubit.dart';
 import 'package:maps_flutter/helpers/progress_indicator_helper.dart';
 
 class VerifyButton extends StatelessWidget {
