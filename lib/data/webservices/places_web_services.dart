@@ -34,4 +34,24 @@ class PlacesWebServices {
       return [];
     }
   }
+
+  Future<dynamic> getPlaceLocationDetails(String placeId, String sessionToken) async {
+    try {
+      Response response = await dio.get(
+        placeLocationBaseURL,
+        queryParameters: {
+          "place_id": placeId,
+          "fields": "geometry",
+          "key": googleAPIKey,
+          "sessionToken": sessionToken,
+        },
+      );
+      return response.data;
+    } catch (error) {
+      return Future.error(
+        "Place location Error : ",
+        StackTrace.fromString(("this is its trace")),
+      );
+    }
+  }
 }

@@ -4,15 +4,15 @@ import 'package:maps_flutter/core/theming/my_colors.dart';
 import 'package:maps_flutter/data/models/place_suggestions.dart';
 
 class SuggestionsPlacesListItem extends StatelessWidget {
-  const SuggestionsPlacesListItem({super.key, required this.suggestions});
-  final PlaceSuggestions suggestions;
+  const SuggestionsPlacesListItem({super.key, required this.suggestion});
+  final PlaceSuggestions suggestion;
 
   @override
   Widget build(BuildContext context) {
-    var title = suggestions.description.split(",")[0];
+    var title = suggestion.description.split(",")[0];
     var subTitle =
-        suggestions.description
-            .replaceFirst("${suggestions.description.split(",")[0]},", "")
+        suggestion.description
+            .replaceFirst("${suggestion.description.split(",")[0]},", "")
             .trim();
     return Container(
       width: double.infinity,

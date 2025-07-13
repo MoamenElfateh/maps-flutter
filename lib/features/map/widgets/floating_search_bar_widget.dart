@@ -1,14 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:maps_flutter/business_logic/cubit/maps/maps_cubit.dart';
-import 'package:maps_flutter/core/theming/my_colors.dart';
-import 'package:maps_flutter/features/map/widgets/suggestions_bloc.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:uuid/uuid.dart';
 
+import 'package:maps_flutter/business_logic/cubit/maps/maps_cubit.dart';
+import 'package:maps_flutter/core/theming/my_colors.dart';
+import 'package:maps_flutter/data/models/place_details.dart';
+import 'package:maps_flutter/data/models/place_suggestions.dart';
+import 'package:maps_flutter/features/map/widgets/selected_place_location_details_bloc.dart';
+import 'package:maps_flutter/features/map/widgets/suggestions_bloc.dart';
+
 class FloatingSearchBarWidget extends StatefulWidget {
-  const FloatingSearchBarWidget({super.key});
+  // ignore: prefer_const_constructors_in_immutables
+  FloatingSearchBarWidget({
+    super.key,
+    required this.placeSuggestion,
+    required this.selectedPlace,
+    required this.goToSearchedLocationDetails,
+  });
+  late final PlaceSuggestions placeSuggestion;
+  late final PlaceDetails selectedPlace;
+  final Future<void> Function() goToSearchedLocationDetails;
 
   @override
   State<FloatingSearchBarWidget> createState() =>
@@ -69,6 +83,11 @@ class _FloatingSearchBarWidgetState extends State<FloatingSearchBarWidget> {
             children: [
               SuggestionsBloc(
                 floatingSearchBarController: floatingSearchBarController,
+                placeSuggestion: widget.placeSuggestion,
+              ),
+              SelectedPlaceLocationDetailsBloc(
+                selectedPlace: widget.selectedPlace,
+                goToSearchedLocationDetails: widget.goToSearchedLocationDetails,
               ),
             ],
           ),
