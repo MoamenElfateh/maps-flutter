@@ -2,27 +2,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:maps_flutter/business_logic/cubit/maps/maps_cubit.dart';
 import 'package:maps_flutter/core/theming/my_colors.dart';
 import 'package:maps_flutter/data/models/place_details.dart';
+import 'package:maps_flutter/data/models/place_directions.dart';
 import 'package:maps_flutter/data/models/place_suggestions.dart';
+import 'package:maps_flutter/features/map/widgets/distance_and_duration_bloc.dart';
 import 'package:maps_flutter/features/map/widgets/selected_place_location_details_bloc.dart';
 import 'package:maps_flutter/features/map/widgets/suggestions_bloc.dart';
 
+// ignore: must_be_immutable
 class FloatingSearchBarWidget extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
+  // ignore: use_super_parameters, prefer_const_constructors_in_immutables
   FloatingSearchBarWidget({
-    super.key,
+    Key? key,
     required this.placeSuggestion,
     required this.selectedPlace,
     required this.goToSearchedLocationDetails,
-  });
+    required this.progressIndicator,
+    required this.isTimeAndDistanceVisible,
+    required this.placeDirections,
+    required this.polyLinesPoints,
+    this.position,
+    required this.removeAllMarkersAndUpdateUI,
+  }) : super(key: key);
   late final PlaceSuggestions placeSuggestion;
   late final PlaceDetails selectedPlace;
   final Future<void> Function() goToSearchedLocationDetails;
+  late final bool progressIndicator;
+  late final bool isTimeAndDistanceVisible;
+  late final PlaceDirections placeDirections;
+  late final List<LatLng> polyLinesPoints;
+  final void Function() removeAllMarkersAndUpdateUI;
+
+  Position? position;
 
   @override
   State<FloatingSearchBarWidget> createState() =>
@@ -55,11 +73,16 @@ class _FloatingSearchBarWidgetState extends State<FloatingSearchBarWidget> {
       openAxisAlignment: 0.0,
       width: isPortrait ? 600.w : 500.w,
       debounceDelay: const Duration(milliseconds: 500),
+      progress: widget.progressIndicator,
       onQueryChanged: (query) {
         getPlacesSuggestions(query);
       },
       onFocusChanged: (isFocused) {
+        // hide distance and time raw
         // click , not click
+        setState(() {
+          widget.isTimeAndDistanceVisible = false;
+        });
       },
       // Specify a custom transition to be used for
       // animating between opened and closed stated.
@@ -84,10 +107,17 @@ class _FloatingSearchBarWidgetState extends State<FloatingSearchBarWidget> {
               SuggestionsBloc(
                 floatingSearchBarController: floatingSearchBarController,
                 placeSuggestion: widget.placeSuggestion,
+                polyLinesPoints: widget.polyLinesPoints,
+                removeAllMarkersAndUpdateUI: widget.removeAllMarkersAndUpdateUI,
               ),
               SelectedPlaceLocationDetailsBloc(
                 selectedPlace: widget.selectedPlace,
                 goToSearchedLocationDetails: widget.goToSearchedLocationDetails,
+                position: widget.position,
+              ),
+              DistanceAndDurationBloc(
+                placeDirections: widget.placeDirections,
+                polyLinesPoints: widget.polyLinesPoints,
               ),
             ],
           ),

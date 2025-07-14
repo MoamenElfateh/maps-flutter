@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:uuid/uuid.dart';
 
@@ -15,10 +16,14 @@ class SuggestionsPlacesList extends StatelessWidget {
     required this.places,
     required this.floatingSearchBarController,
     required this.placeSuggestion,
+    required this.polyLinesPoints,
+    required this.removeAllMarkersAndUpdateUI,
   });
   final List<PlaceSuggestions> places;
   final FloatingSearchBarController floatingSearchBarController;
   late final PlaceSuggestions placeSuggestion;
+  late final List<LatLng> polyLinesPoints;
+  final void Function() removeAllMarkersAndUpdateUI;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +37,8 @@ class SuggestionsPlacesList extends StatelessWidget {
             placeSuggestion = places[index];
             floatingSearchBarController.close();
             getSelectedPlaceLocationDetails(context);
+            polyLinesPoints.clear();
+            removeAllMarkersAndUpdateUI();
           },
           child: SuggestionsPlacesListItem(suggestion: places[index]),
         );
