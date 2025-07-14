@@ -36,7 +36,7 @@ class PinCodeFields extends StatelessWidget {
         onCompleted(code);
       },
       onChanged: (value) {
-        print(value);
+        // print(value);
       },
     );
   }

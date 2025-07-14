@@ -15,3 +15,9 @@ class PlaceLocationDetailsLoaded extends MapsState {
 
   PlaceLocationDetailsLoaded(this.placeDetails);
 }
+
+class DirectionsLoaded extends MapsState {
+  final PlaceDirections placeDirections;
+
+  DirectionsLoaded(this.placeDirections);
+}
